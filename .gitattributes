@@ -1,0 +1,12 @@
+# Force LF for everything that runs on the Linux container / Render.
+* text=auto eol=lf
+*.png binary
+*.pdf binary
+*.ttf binary
+*.ttc binary
+Dockerfile text eol=lf
+*.py text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
