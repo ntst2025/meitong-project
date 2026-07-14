@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>剪臂 FEA 分析 · Scissor-Lift FEA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>剪臂结构有限元分析 <span>Scissor-Lift FEA Report Generator</span></h1>
+    <p class="sub">上传 STEP 装配体 → 设置载荷/材料参数 → Gmsh + CalculiX 求解 → 输出 EN280 报告 PDF</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1 · 上传模型与参数</h2>
+      <form id="form">
+        <label class="file">
+          <span>STEP 文件 (.step / .stp)</span>
+          <input type="file" id="step" name="step" accept=".step,.stp,.STEP,.STP" required />
+        </label>
+
+        <div class="grid">
+          <label>总载荷 Total load (N)
+            <input type="number" id="totalLoadN" value="12125" step="1" />
+          </label>
+          <label>重力 Gravity (mm/s²)
+            <input type="number" id="gravity" value="9806.6" step="0.1" />
+          </label>
+          <label>默认材料 Default material
+            <select id="defaultMaterial">
+              <option>Q345</option><option>Q235</option><option>UHMW</option>
+            </select>
+          </label>
+          <label>竖直轴 Vertical axis
+            <select id="verticalAxis"><option>z</option><option>y</option><option>x</option></select>
+          </label>
+          <label>网格划分数 Mesh divisions
+            <input type="number" id="meshDivisions" value="50" step="1" />
+          </label>
+          <label>单元阶次 Element order
+            <select id="elementOrder"><option value="2">二次 (C3D10)</option><option value="1">线性 (C3D4)</option></select>
+          </label>
+          <label class="check"><input type="checkbox" id="bonded" checked /> 绑定接触 Bonded interfaces</label>
+        </div>
+
+        <button type="submit" id="run">开始分析 Run FEA</button>
+      </form>
+    </section>
+
+    <section class="card" id="statusCard" hidden>
+      <h2>2 · 求解进度</h2>
+      <div class="bar"><div id="barfill"></div></div>
+      <p id="stage">—</p>
+      <pre id="log"></pre>
+    </section>
+
+    <section class="card" id="resultCard" hidden>
+      <h2>3 · 结果</h2>
+      <p><a id="pdf" class="btn" href="#" download>⬇ 下载报告 PDF (剪臂输出结果.pdf)</a></p>
+      <div id="preview"></div>
+      <table id="table"></table>
+    </section>
+  </main>
+
+  <footer>自动化 FEA 估算 · 采用绑定接触简化 · 非签署级 CAE 认证替代品</footer>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+node_modules
+jobs
+test_out
+*.log
+.git
+params_test.json

@@ -1,0 +1,14 @@
+# Render Blueprint — free web service running the Docker image.
+# Deploy: push this repo to GitHub, then in Render: New + > Blueprint > pick the repo.
+services:
+  - type: web
+    name: scissor-fea-app
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: OMP_NUM_THREADS
+        value: "2"
+      # Render provides PORT; server.js already honors it.

@@ -1,0 +1,32 @@
+:root { --bg:#0f172a; --card:#fff; --ink:#1e293b; --accent:#c00000; --line:#e2e8f0; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  color:var(--ink); background:#f1f5f9; }
+header { background:linear-gradient(120deg,#0f172a,#1e3a8a); color:#fff; padding:28px 24px; }
+header h1 { margin:0; font-size:22px; }
+header h1 span { font-weight:400; font-size:14px; opacity:.8; margin-left:8px; }
+header .sub { margin:8px 0 0; opacity:.85; font-size:13px; }
+main { max-width:900px; margin:24px auto; padding:0 16px; display:flex; flex-direction:column; gap:18px; }
+.card { background:var(--card); border-radius:12px; padding:20px 22px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+.card h2 { margin:0 0 14px; font-size:16px; color:#0f172a; }
+form label { display:flex; flex-direction:column; font-size:12px; color:#475569; gap:4px; }
+form .file { margin-bottom:16px; }
+input, select { padding:8px 10px; border:1px solid var(--line); border-radius:8px; font-size:14px; background:#fff; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin-bottom:18px; }
+.check { flex-direction:row; align-items:center; gap:8px; }
+button, .btn { background:var(--accent); color:#fff; border:0; padding:11px 20px; border-radius:8px;
+  font-size:15px; cursor:pointer; text-decoration:none; display:inline-block; }
+button:disabled { opacity:.5; cursor:not-allowed; }
+.bar { height:12px; background:var(--line); border-radius:6px; overflow:hidden; }
+#barfill { height:100%; width:0; background:linear-gradient(90deg,#2563eb,#22c55e); transition:width .4s; }
+#stage { font-size:13px; color:#475569; margin:10px 0; }
+#log { background:#0b1220; color:#9fe8b5; font-size:11px; padding:12px; border-radius:8px;
+  max-height:220px; overflow:auto; white-space:pre-wrap; }
+#preview { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin:12px 0; }
+#preview img { width:100%; border:1px solid var(--line); border-radius:8px; }
+#preview figcaption { font-size:11px; color:#475569; text-align:center; }
+table { width:100%; border-collapse:collapse; font-size:13px; margin-top:12px; }
+th, td { border:1px solid var(--line); padding:7px 9px; text-align:center; }
+th { background:#f8fafc; }
+.fail { color:var(--accent); font-weight:700; }
+footer { text-align:center; color:#94a3b8; font-size:12px; padding:24px; }

@@ -1,0 +1,8 @@
+node_modules/
+jobs/
+test_out/
+*.log
+server.out.log
+server.err.log
+params_test.json
+# portable local toolchain lives one level up in ../tools (not part of the repo)
