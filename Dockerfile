@@ -5,11 +5,16 @@ FROM node:20-bookworm-slim
 # CalculiX solver, gmsh runtime libs, and a CJK font for the PDF report.
 RUN apt-get update && apt-get install -y --no-install-recommends \
       python3 python3-pip python3-numpy python3-matplotlib \
-      calculix-ccx \
+      calculix-ccx curl ca-certificates \
       libgl1 libglu1-mesa libgomp1 libx11-6 libxext6 libxft2 libxrender1 \
       libxcursor1 libxinerama1 libfontconfig1 \
-      fonts-wqy-zenhei fonts-noto-cjk \
     && rm -rf /var/lib/apt/lists/*
+
+# Single-face CJK font (OFL) for the PDF report — pdfkit can't reliably load .ttc collections.
+RUN mkdir -p /usr/share/fonts/truetype/custom && \
+    curl -fsSL "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf" \
+      -o /usr/share/fonts/truetype/custom/cjk.otf && \
+    test -s /usr/share/fonts/truetype/custom/cjk.otf
 
 # gmsh Python API (not packaged for apt) — wheel bundles its own libs.
 RUN pip3 install --no-cache-dir --break-system-packages gmsh

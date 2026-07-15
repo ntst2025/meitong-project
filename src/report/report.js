@@ -8,21 +8,19 @@ const RED = '#c00000';
 // Cross-platform CJK font resolution. Each candidate is [path, familyForCollection?].
 // .ttc collections require the family name as pdfkit's 3rd registerFont arg.
 const CJK_CANDIDATES = [
-  ['C:/Windows/Fonts/Deng.ttf'],
+  [process.env.CJK_FONT],                              // explicit override
+  ['/usr/share/fonts/truetype/custom/cjk.otf'],        // baked into the Docker image (single face)
+  ['C:/Windows/Fonts/Deng.ttf'],                       // Windows local dev
   ['C:/Windows/Fonts/msyh.ttc', 'Microsoft YaHei'],
-  ['/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc', 'WenQuanYi Zen Hei'],
-  ['/usr/share/fonts/truetype/wqy/wqy-microhei.ttc', 'WenQuanYi Micro Hei'],
-  ['/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc', 'Noto Sans CJK SC'],
-  ['/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc', 'Noto Serif CJK SC'],
 ];
 const CJK_BOLD = [
+  [process.env.CJK_FONT],
+  ['/usr/share/fonts/truetype/custom/cjk.otf'],
   ['C:/Windows/Fonts/simhei.ttf'],
-  ['/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc', 'WenQuanYi Zen Hei'],
-  ['/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc', 'Noto Sans CJK SC'],
 ];
 
 function firstFont(list) {
-  for (const c of list) if (fs.existsSync(c[0])) return c;
+  for (const c of list) if (c[0] && fs.existsSync(c[0])) return c;
   return null;
 }
 
