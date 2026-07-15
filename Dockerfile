@@ -6,7 +6,7 @@ FROM node:20-bookworm-slim
 RUN apt-get update && apt-get install -y --no-install-recommends \
       python3 python3-pip python3-numpy python3-matplotlib \
       calculix-ccx \
-      libglu1-mesa libgomp1 libx11-6 libxext6 libxft2 libxrender1 \
+      libgl1 libglu1-mesa libgomp1 libx11-6 libxext6 libxft2 libxrender1 \
       libxcursor1 libxinerama1 libfontconfig1 \
       fonts-wqy-zenhei fonts-noto-cjk \
     && rm -rf /var/lib/apt/lists/*
