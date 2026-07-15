@@ -1,6 +1,7 @@
 node_modules/
 jobs/
 test_out/
+full_run/
 *.log
 server.out.log
 server.err.log

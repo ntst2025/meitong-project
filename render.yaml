@@ -4,7 +4,7 @@ services:
   - type: web
     name: scissor-fea-app
     runtime: docker
-    plan: free
+    plan: standard   # 2 GB / 1 CPU — needed for the full ~82-body solve (free/starter=512MB OOMs)
     dockerfilePath: ./Dockerfile
     autoDeploy: true
     healthCheckPath: /
